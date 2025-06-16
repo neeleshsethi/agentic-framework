@@ -14,3 +14,17 @@ class Action:
     def execute(self, **args) -> Any:
         """Execute the action's function"""
         return self.function(**args)
+
+class ActionRegistry:
+    def __init__(self):
+        self.actions = {}
+
+    def register(self, action: Action):
+        self.actions[action.name] = action
+
+    def get_action(self, name: str) -> [Action, None]:
+        return self.actions.get(name, None)
+
+    def get_actions(self) -> List[Action]:
+        """Get all registered actions"""
+        return list(self.actions.values())
