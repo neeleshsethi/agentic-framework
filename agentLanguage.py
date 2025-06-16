@@ -1,3 +1,20 @@
+@dataclass
+class Prompt:
+    messages: List[Dict] = field(default_factory=list)
+    tools: List[Dict] = field(default_factory=list)
+    metadata: dict = field(default_factory=dict)  # Fixing mutable default issue
+
+
+
+@dataclass(frozen=True)
+class Goal:
+    priority: int
+    name: str
+    description: str
+
+
+
+
 class AgentLanguage:
     def construct_prompt(self,
                         actions: List[Action],
